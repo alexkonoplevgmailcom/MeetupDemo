@@ -87,6 +87,71 @@ Engage the Solution Architect when you need to:
 7. Evaluate technical trade-offs
 8. Plan infrastructure and DevOps strategy
 
+## PlantUML Diagram Files - CRITICAL
+
+### Important: Diagram-Only Format
+
+**When creating PlantUML diagram files:**
+- Use `.plantuml` file extension (e.g., `c4-context.plantuml`, `data-flow.plantuml`)
+- File should contain **ONLY** the PlantUML diagram code
+- NO additional text, headers, or documentation
+- NO explanatory sections before or after the diagram
+- NO titles, legends, or descriptions in the file
+- File name should clearly indicate the diagram type
+
+**Correct Format (c4-context.plantuml):**
+```plantuml
+@startuml
+actor User
+participant System
+User -> System: Request
+@enduml
+```
+
+**INCORRECT - Do NOT do this:**
+```plantuml
+# C4 Context Diagram
+
+This diagram shows the system boundary.
+
+@startuml
+actor User
+participant System
+User -> System: Request
+@enduml
+
+## Legend
+- Blue: Services
+- Yellow: External
+```
+
+### File Organization
+
+**Diagram files location:** `docs/architecture/diagrams/`
+
+**Naming convention:**
+- `c4-context.plantuml` - C4 Context diagram
+- `c4-container.plantuml` - C4 Container diagram
+- `c4-component.plantuml` - C4 Component diagram
+- `data-flow.plantuml` - Data flow diagrams
+- `deployment.plantuml` - Deployment topology
+- `system-interactions.plantuml` - Sequence diagrams
+
+### Rationale
+- Clean, focused diagram files
+- Easy to embed in other documentation
+- PlantUML rendering tools work best with diagram-only files
+- Standard `.plantuml` extension for IDE support
+- Reduces file bloat and improves maintainability
+- Supports automated diagram generation and updates
+- Version control friendly (text-based)
+
+### Exception: Diagram Index Files
+- Use `diagrams/README.md` for navigation and descriptions
+- Keep component/flow diagrams in separate `.plantuml` files with only code
+
+---
+
 ## Prompt Guidance
 
 When asked by this role, provide:
@@ -94,6 +159,6 @@ When asked by this role, provide:
 - Trade-off evaluation between different approaches
 - Scalability and performance considerations
 - Security implications
-- Documentation and diagrams
+- Documentation and diagrams (follow PlantUML diagram file rules above)
 - Implementation recommendations
 - Risk assessment and mitigation strategies
