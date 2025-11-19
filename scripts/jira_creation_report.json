@@ -1,0 +1,176 @@
+[
+  {
+    "type": "Epic",
+    "id": "E-001",
+    "title": "Daily Balance Monitoring",
+    "jira_key": "AID-11"
+  },
+  {
+    "type": "User Story",
+    "id": "US-1-1",
+    "title": "Set up automated daily balance check execution",
+    "jira_key": "AID-12",
+    "epic": "AID-11",
+    "story_points": 5
+  },
+  {
+    "type": "User Story",
+    "id": "US-1-2",
+    "title": "Validate customer balance against 15,000 NIS threshold",
+    "jira_key": "AID-13",
+    "epic": "AID-11",
+    "story_points": 5
+  },
+  {
+    "type": "User Story",
+    "id": "US-1-3",
+    "title": "Handle balance verification failures and data quality issues",
+    "jira_key": "AID-14",
+    "epic": "AID-11",
+    "story_points": 3
+  },
+  {
+    "type": "Epic",
+    "id": "E-002",
+    "title": "Monthly Qualification Determination",
+    "jira_key": "AID-15"
+  },
+  {
+    "type": "User Story",
+    "id": "US-2-1",
+    "title": "Calculate month-end qualification status",
+    "jira_key": "AID-16",
+    "epic": "AID-15",
+    "story_points": 8
+  },
+  {
+    "type": "User Story",
+    "id": "US-2-2",
+    "title": "Generate qualified customer list with metadata",
+    "jira_key": "AID-17",
+    "epic": "AID-15",
+    "story_points": 5
+  },
+  {
+    "type": "User Story",
+    "id": "US-2-3",
+    "title": "Audit and validate qualification results",
+    "jira_key": "AID-18",
+    "epic": "AID-15",
+    "story_points": 3
+  },
+  {
+    "type": "Epic",
+    "id": "E-003",
+    "title": "SMS Notification Generation & Delivery",
+    "jira_key": "AID-19"
+  },
+  {
+    "type": "User Story",
+    "id": "US-3-1",
+    "title": "Validate customer phone numbers",
+    "jira_key": "AID-20",
+    "epic": "AID-19",
+    "story_points": 3
+  },
+  {
+    "type": "User Story",
+    "id": "US-3-2",
+    "title": "Generate SMS notification batch file",
+    "jira_key": "AID-21",
+    "epic": "AID-19",
+    "story_points": 5
+  },
+  {
+    "type": "User Story",
+    "id": "US-3-3",
+    "title": "Submit SMS batch to carrier",
+    "jira_key": "AID-22",
+    "epic": "AID-19",
+    "story_points": 5
+  },
+  {
+    "type": "User Story",
+    "id": "US-3-4",
+    "title": "Handle SMS submission failures and retries",
+    "jira_key": "AID-23",
+    "epic": "AID-19",
+    "story_points": 3
+  },
+  {
+    "type": "Epic",
+    "id": "E-004",
+    "title": "SMS Delivery Tracking & Confirmation",
+    "jira_key": "AID-24"
+  },
+  {
+    "type": "User Story",
+    "id": "US-4-1",
+    "title": "Poll SMS carrier for delivery confirmations",
+    "jira_key": "AID-25",
+    "epic": "AID-24",
+    "story_points": 5
+  },
+  {
+    "type": "User Story",
+    "id": "US-4-2",
+    "title": "Log and categorize SMS delivery outcomes",
+    "jira_key": "AID-26",
+    "epic": "AID-24",
+    "story_points": 5
+  },
+  {
+    "type": "User Story",
+    "id": "US-4-3",
+    "title": "Retry failed SMS deliveries",
+    "jira_key": "AID-27",
+    "epic": "AID-24",
+    "story_points": 3
+  },
+  {
+    "type": "User Story",
+    "id": "US-4-4",
+    "title": "Escalate undeliverable messages to operations",
+    "jira_key": "AID-28",
+    "epic": "AID-24",
+    "story_points": 3
+  },
+  {
+    "type": "Epic",
+    "id": "E-005",
+    "title": "Monthly Reporting & Analytics",
+    "jira_key": "AID-29"
+  },
+  {
+    "type": "User Story",
+    "id": "US-5-1",
+    "title": "Aggregate qualification and delivery metrics",
+    "jira_key": "AID-30",
+    "epic": "AID-29",
+    "story_points": 5
+  },
+  {
+    "type": "User Story",
+    "id": "US-5-2",
+    "title": "Generate monthly performance report",
+    "jira_key": "AID-31",
+    "epic": "AID-29",
+    "story_points": 5
+  },
+  {
+    "type": "User Story",
+    "id": "US-5-3",
+    "title": "Calculate key performance indicators (KPIs)",
+    "jira_key": "AID-32",
+    "epic": "AID-29",
+    "story_points": 3
+  },
+  {
+    "type": "User Story",
+    "id": "US-5-4",
+    "title": "Distribute reports to stakeholders",
+    "jira_key": "AID-33",
+    "epic": "AID-29",
+    "story_points": 3
+  }
+]
