@@ -1,6 +1,6 @@
 # Epic: SMS Notification Generation & Delivery
 
-**Epic ID:** E-003
+**Epic ID:** MEET1-3
 **Priority:** P0 (Critical - MVP)
 **Status:** Not Started
 **Target Sprint(s):** Sprint 2-3
@@ -53,10 +53,10 @@ As the Premium Customer Notification System, I want to generate SMS notification
 
 | Story ID | Title | Points | Status |
 |----------|-------|--------|--------|
-| [US-3-1](./US-3-1.md) | Validate customer phone numbers | 3 | Not Started |
-| [US-3-2](./US-3-2.md) | Generate SMS notification batch file | 5 | Not Started |
-| [US-3-3](./US-3-3.md) | Submit SMS batch to carrier | 5 | Not Started |
-| [US-3-4](./US-3-4.md) | Handle SMS submission failures and retries | 3 | Not Started |
+| [MEET1-3-1](../MEET1-3-SMS-Notification-Dispatch/MEET1-3-1-Validate-customer-phone-numbers.md) | Validate customer phone numbers | 3 | Not Started |
+| [MEET1-3-2](../MEET1-3-SMS-Notification-Dispatch/MEET1-3-2-Generate-SMS-notification-batch-file.md) | Generate SMS notification batch file | 5 | Not Started |
+| [MEET1-3-3](../MEET1-3-SMS-Notification-Dispatch/MEET1-3-3-Submit-SMS-batch-to-carrier.md) | Submit SMS batch to carrier | 5 | Not Started |
+| [MEET1-3-4](../MEET1-3-SMS-Notification-Dispatch/MEET1-3-4-Handle-SMS-submission-failures-and-retries.md) | Handle SMS submission failures and retries | 3 | Not Started |
 
 **Total Story Points:** 16
 
@@ -65,9 +65,9 @@ As the Premium Customer Notification System, I want to generate SMS notification
 ## Dependencies
 
 ### Internal Dependencies
-- Depends on: Epic E-002 (Monthly Qualification) - qualified customer list required
-- Precedes: Epic E-004 (SMS Delivery Tracking)
-- Precedes: Epic E-005 (Reporting & Analytics)
+- Depends on: Epic MEET1-2 (Monthly Qualification) - qualified customer list required
+- Precedes: Epic MEET1-4 (SMS Delivery Tracking)
+- Precedes: Epic MEET1-5 (Reporting E-005 (Reporting & Analytics) Analytics)
 
 ### External Dependencies
 - SMS carrier integration required (API/SFTP)

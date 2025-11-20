@@ -1,7 +1,7 @@
 # User Story: Handle balance verification failures and data quality issues
 
-**Story ID:** US-1-3
-**Epic:** [E-001: Daily Balance Monitoring](./epic.md)
+**Story ID:** MEET1-1-3
+**Epic:** [MEET1-1: Daily Balance Monitoring](./epic.md)
 **Priority:** P0 (Critical)
 **Status:** Not Started
 **Story Points:** 3

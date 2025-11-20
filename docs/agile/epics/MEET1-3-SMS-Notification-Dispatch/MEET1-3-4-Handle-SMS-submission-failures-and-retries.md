@@ -1,7 +1,7 @@
 # User Story: Handle SMS submission failures and retries
 
-**Story ID:** US-3-4
-**Epic:** [E-003: SMS Notification Generation & Delivery](./epic.md)
+**Story ID:** MEET1-3-4
+**Epic:** [MEET1-3: SMS Notification Generation & Delivery](./epic.md)
 **Priority:** P0 (Critical)
 **Status:** Not Started
 **Story Points:** 3

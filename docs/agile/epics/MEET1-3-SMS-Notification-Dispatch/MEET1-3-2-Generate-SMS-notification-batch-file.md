@@ -1,7 +1,7 @@
 # User Story: Generate SMS notification batch file
 
-**Story ID:** US-3-2
-**Epic:** [E-003: SMS Notification Generation & Delivery](./epic.md)
+**Story ID:** MEET1-3-2
+**Epic:** [MEET1-3: SMS Notification Generation & Delivery](./epic.md)
 **Priority:** P0 (Critical)
 **Status:** Not Started
 **Story Points:** 5

@@ -1,6 +1,6 @@
 # Epic: SMS Delivery Tracking & Confirmation
 
-**Epic ID:** E-004
+**Epic ID:** MEET1-4
 **Priority:** P1 (High - Core Delivery)
 **Status:** Not Started
 **Target Sprint(s):** Sprint 3-4
@@ -51,10 +51,10 @@ As the Premium Customer Notification System, I want to track SMS delivery status
 
 | Story ID | Title | Points | Status |
 |----------|-------|--------|--------|
-| [US-4-1](./US-4-1.md) | Poll SMS carrier for delivery confirmations | 5 | Not Started |
-| [US-4-2](./US-4-2.md) | Log and categorize SMS delivery outcomes | 5 | Not Started |
-| [US-4-3](./US-4-3.md) | Retry failed SMS deliveries | 3 | Not Started |
-| [US-4-4](./US-4-4.md) | Escalate undeliverable messages to operations | 3 | Not Started |
+| [MEET1-4-1](../MEET1-4-SMS-Delivery-Tracking/MEET1-4-1-Poll-SMS-carrier-for-delivery-confirmations.md) | Poll SMS carrier for delivery confirmations | 5 | Not Started |
+| [MEET1-4-2](../MEET1-4-SMS-Delivery-Tracking/MEET1-4-2-Log-and-categorize-SMS-delivery-outcomes.md) | Log and categorize SMS delivery outcomes | 5 | Not Started |
+| [MEET1-4-3](../MEET1-4-SMS-Delivery-Tracking/MEET1-4-3-Retry-failed-SMS-deliveries.md) | Retry failed SMS deliveries | 3 | Not Started |
+| [MEET1-4-4](../MEET1-4-SMS-Delivery-Tracking/MEET1-4-4-Escalate-undeliverable-messages-to-operations.md) | Escalate undeliverable messages to operations | 3 | Not Started |
 
 **Total Story Points:** 16
 
@@ -63,8 +63,8 @@ As the Premium Customer Notification System, I want to track SMS delivery status
 ## Dependencies
 
 ### Internal Dependencies
-- Depends on: Epic E-003 (SMS Notification Dispatch) - requires tracking IDs
-- Precedes: Epic E-005 (Reporting & Analytics)
+- Depends on: Epic MEET1-3 (SMS Notification Dispatch) - requires tracking IDs
+- Precedes: Epic MEET1-5 (Reporting E-005 (Reporting & Analytics) Analytics)
 
 ### External Dependencies
 - SMS carrier must provide delivery status API or webhook

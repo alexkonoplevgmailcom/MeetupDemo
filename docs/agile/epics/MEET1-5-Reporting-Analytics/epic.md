@@ -1,6 +1,6 @@
 # Epic: Monthly Reporting & Analytics
 
-**Epic ID:** E-005
+**Epic ID:** MEET1-5
 **Priority:** P1 (High - Business Intelligence)
 **Status:** Not Started
 **Target Sprint(s):** Sprint 4-5
@@ -52,10 +52,10 @@ As a Business Stakeholder, I want to analyze program performance through compreh
 
 | Story ID | Title | Points | Status |
 |----------|-------|--------|--------|
-| [US-5-1](./US-5-1.md) | Aggregate qualification and delivery metrics | 5 | Not Started |
-| [US-5-2](./US-5-2.md) | Generate monthly performance report | 5 | Not Started |
-| [US-5-3](./US-5-3.md) | Calculate key performance indicators (KPIs) | 3 | Not Started |
-| [US-5-4](./US-5-4.md) | Distribute reports to stakeholders | 3 | Not Started |
+| [MEET1-5-1](../MEET1-5-Reporting-Analytics/MEET1-5-1-Aggregate-qualification-and-delivery-metrics.md) | Aggregate qualification and delivery metrics | 5 | Not Started |
+| [MEET1-5-2](../MEET1-5-Reporting-Analytics/MEET1-5-2-Generate-monthly-performance-report.md) | Generate monthly performance report | 5 | Not Started |
+| [MEET1-5-3](../MEET1-5-Reporting-Analytics/MEET1-5-3-Calculate-key-performance-indicators-KPIs.md) | Calculate key performance indicators (KPIs) | 3 | Not Started |
+| [MEET1-5-4](../MEET1-5-Reporting-Analytics/MEET1-5-4-Distribute-reports-to-stakeholders.md) | Distribute reports to stakeholders | 3 | Not Started |
 
 **Total Story Points:** 16
 

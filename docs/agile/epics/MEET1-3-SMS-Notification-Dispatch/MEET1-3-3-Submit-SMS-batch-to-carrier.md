@@ -1,7 +1,7 @@
 # User Story: Submit SMS batch to carrier
 
-**Story ID:** US-3-3
-**Epic:** [E-003: SMS Notification Generation & Delivery](./epic.md)
+**Story ID:** MEET1-3-3
+**Epic:** [MEET1-3: SMS Notification Generation & Delivery](./epic.md)
 **Priority:** P0 (Critical)
 **Status:** Not Started
 **Story Points:** 5

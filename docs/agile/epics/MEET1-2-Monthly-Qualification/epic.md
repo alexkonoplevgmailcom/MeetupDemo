@@ -1,6 +1,6 @@
 # Epic: Monthly Qualification Determination
 
-**Epic ID:** E-002
+**Epic ID:** MEET1-2
 **Priority:** P0 (Critical - MVP)
 **Status:** Not Started
 **Target Sprint(s):** Sprint 1-2
@@ -51,9 +51,9 @@ As the Premium Customer Notification System, I want to determine month-end quali
 
 | Story ID | Title | Points | Status |
 |----------|-------|--------|--------|
-| [US-2-1](./US-2-1.md) | Calculate month-end qualification status | 8 | Not Started |
-| [US-2-2](./US-2-2.md) | Generate qualified customer list with metadata | 5 | Not Started |
-| [US-2-3](./US-2-3.md) | Audit and validate qualification results | 3 | Not Started |
+| [MEET1-2-1](../MEET1-2-Monthly-Qualification/MEET1-2-1-Calculate-month-end-qualification-status.md) | Calculate month-end qualification status | 8 | Not Started |
+| [MEET1-2-2](../MEET1-2-Monthly-Qualification/MEET1-2-2-Generate-qualified-customer-list-with-metadata.md) | Generate qualified customer list with metadata | 5 | Not Started |
+| [MEET1-2-3](../MEET1-2-Monthly-Qualification/MEET1-2-3-Audit-and-validate-qualification-results.md) | Audit and validate qualification results | 3 | Not Started |
 
 **Total Story Points:** 16
 
@@ -62,9 +62,9 @@ As the Premium Customer Notification System, I want to determine month-end quali
 ## Dependencies
 
 ### Internal Dependencies
-- Depends on: Epic E-001 (Daily Balance Monitoring) - must be complete before month-end calculation
-- Precedes: Epic E-003 (SMS Notification Dispatch)
-- Precedes: Epic E-005 (Reporting & Analytics)
+- Depends on: Epic MEET1-1 (Daily Balance Monitoring) - must be complete before month-end calculation
+- Precedes: Epic MEET1-3 (SMS Notification Dispatch)
+- Precedes: Epic MEET1-5 (Reporting E-005 (Reporting & Analytics) Analytics)
 
 ### External Dependencies
 - None (uses data from E-001)

@@ -1,7 +1,7 @@
 # User Story: Escalate undeliverable messages to operations
 
-**Story ID:** US-4-4
-**Epic:** [E-004: SMS Delivery Tracking & Confirmation](./epic.md)
+**Story ID:** MEET1-4-4
+**Epic:** [MEET1-4: SMS Delivery Tracking & Confirmation](./epic.md)
 **Priority:** P1 (High)
 **Status:** Not Started
 **Story Points:** 3

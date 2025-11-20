@@ -1,6 +1,6 @@
 # Epic: Daily Balance Monitoring
 
-**Epic ID:** E-001
+**Epic ID:** MEET1-1
 **Priority:** P0 (Critical - MVP Foundation)
 **Status:** Not Started
 **Target Sprint(s):** Sprint 1
@@ -49,9 +49,9 @@ As the Premium Customer Notification System, I want to automatically verify cust
 
 | Story ID | Title | Points | Status |
 |----------|-------|--------|--------|
-| [US-1-1](./US-1-1.md) | Set up automated daily balance check execution | 5 | Not Started |
-| [US-1-2](./US-1-2.md) | Validate customer balance against 15,000 NIS threshold | 5 | Not Started |
-| [US-1-3](./US-1-3.md) | Handle balance verification failures and data quality issues | 3 | Not Started |
+| [MEET1-1-1](../MEET1-1-Daily-Balance-Monitoring/MEET1-1-1-Set-up-automated-daily-balance-check-execution.md) | Set up automated daily balance check execution | 5 | Not Started |
+| [MEET1-1-2](../MEET1-1-Daily-Balance-Monitoring/MEET1-1-2-Validate-customer-balance-against-15000-NIS-threshold.md) | Validate customer balance against 15,000 NIS threshold | 5 | Not Started |
+| [MEET1-1-3](../MEET1-1-Daily-Balance-Monitoring/MEET1-1-3-Handle-balance-verification-failures-and-data-quality-issues.md) | Handle balance verification failures and data quality issues | 3 | Not Started |
 
 **Total Story Points:** 13
 
@@ -61,8 +61,8 @@ As the Premium Customer Notification System, I want to automatically verify cust
 
 ### Internal Dependencies
 - Requires core banking system connectivity before development begins
-- Precedes Epic E-002 (Monthly Qualification)
-- Precedes Epic E-005 (Reporting & Analytics)
+- Precedes Epic MEET1-2 (Monthly Qualification)
+- Precedes Epic MEET1-5 (Reporting E-005 (Reporting & Analytics) Analytics)
 
 ### External Dependencies
 - Core banking system API must provide real-time balance data

@@ -1,7 +1,7 @@
 # User Story: Validate customer balance against 15,000 NIS threshold
 
-**Story ID:** US-1-2
-**Epic:** [E-001: Daily Balance Monitoring](./epic.md)
+**Story ID:** MEET1-1-2
+**Epic:** [MEET1-1: Daily Balance Monitoring](./epic.md)
 **Priority:** P0 (Critical)
 **Status:** Not Started
 **Story Points:** 5

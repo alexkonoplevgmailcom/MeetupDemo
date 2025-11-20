@@ -1,7 +1,7 @@
 # User Story: Set up automated daily balance check execution
 
-**Story ID:** US-1-1
-**Epic:** [E-001: Daily Balance Monitoring](./epic.md)
+**Story ID:** MEET1-1-1
+**Epic:** [MEET1-1: Daily Balance Monitoring](./epic.md)
 **Priority:** P0 (Critical)
 **Status:** Not Started
 **Story Points:** 5

@@ -1,7 +1,7 @@
 # User Story: Generate qualified customer list with metadata
 
-**Story ID:** US-2-2
-**Epic:** [E-002: Monthly Qualification Determination](./epic.md)
+**Story ID:** MEET1-2-2
+**Epic:** [MEET1-2: Monthly Qualification Determination](./epic.md)
 **Priority:** P0 (Critical)
 **Status:** Not Started
 **Story Points:** 5

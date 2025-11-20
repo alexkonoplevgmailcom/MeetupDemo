@@ -1,7 +1,7 @@
 # User Story: Calculate key performance indicators (KPIs)
 
-**Story ID:** US-5-3
-**Epic:** [E-005: Monthly Reporting & Analytics](./epic.md)
+**Story ID:** MEET1-5-3
+**Epic:** [MEET1-5: Monthly Reporting & Analytics](./epic.md)
 **Priority:** P1 (High)
 **Status:** Not Started
 **Story Points:** 3
