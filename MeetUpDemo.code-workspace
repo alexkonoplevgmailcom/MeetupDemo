@@ -1,13 +1,10 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {
-		"extensions.ignoreRecommendations": false,
-		"extensions.marketplace.serviceUrl": "http://user:Abcd1234%40@localhost:8085/repository/vscode-extensions/api",
-		"extensions.webRequest.strictSSL": false,
-		"jira-plugin.workingProject": ""
-	}
+    "settings": {
+        "jira-plugin.workingProject": ""
+    },
+    "folders": [
+        {
+            "path": "."
+        }
+    ]
 }
