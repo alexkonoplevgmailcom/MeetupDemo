@@ -1,23 +1,38 @@
 #!/usr/bin/env python3
 """
-Script to create Jira epics and user stories from markdown files.
+Generic script to create Jira epics and user stories from markdown files.
+
+Usage:
+    python create_jira_issues.py [options]
+
+Environment Variables:
+    JIRA_URL: Jira server URL (default: http://localhost:8080)
+    JIRA_PAT: Jira Personal Access Token (required)
+    JIRA_PROJECT_KEY: Jira project key (default: MEET1)
+    EPICS_DIR: Directory containing epic markdown files (default: ./epics)
+
+Example:
+    export JIRA_URL="https://jira.example.com"
+    export JIRA_PAT="your-pat-token"
+    export JIRA_PROJECT_KEY="MYPROJ"
+    python create_jira_issues.py
 """
 
 import os
 import re
 import json
-import base64
+import sys
+import argparse
 import requests
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 from dataclasses import dataclass
 
-# Configuration
-JIRA_URL = "http://localhost:8080"
-JIRA_PAT = ""  # Add your Jira personal access token here
-PROJECT_KEY = "AID"  # Change this to your project key
-
-EPICS_DIR = "/Users/alexk/Projects/ MeetupDemo/docs/agile/epics"
+# Configuration - can be overridden via environment variables or command-line arguments
+JIRA_URL = os.getenv("JIRA_URL", "http://localhost:8080")
+JIRA_PAT = os.getenv("JIRA_PAT", "")  # Add your Jira personal access token here
+PROJECT_KEY = os.getenv("JIRA_PROJECT_KEY", "MEET1")  # Default to MEET1, override with env var
+EPICS_DIR = os.getenv("EPICS_DIR", "./epics")
 
 
 @dataclass
@@ -264,12 +279,24 @@ class MarkdownParser:
         )
 
 
-def load_epics_and_stories() -> List[Epic]:
-    """Load all epics and their user stories from markdown files"""
+def load_epics_and_stories(epics_dir: str = EPICS_DIR) -> List[Epic]:
+    """Load all epics and their user stories from markdown files
+    
+    Args:
+        epics_dir: Directory containing epic subdirectories
+        
+    Returns:
+        List of Epic objects with their user stories
+    """
     epics = []
+    
+    epics_path = Path(epics_dir)
+    if not epics_path.exists():
+        print(f"Error: Epics directory not found: {epics_dir}")
+        return epics
 
     # Iterate through epic directories
-    for epic_dir in sorted(Path(EPICS_DIR).iterdir()):
+    for epic_dir in sorted(epics_path.iterdir()):
         if not epic_dir.is_dir():
             continue
 
@@ -284,12 +311,17 @@ def load_epics_and_stories() -> List[Epic]:
 
         print(f"Loaded Epic: {epic.id} - {epic.title}")
 
-        # Parse user stories for this epic
-        for story_file in sorted(epic_dir.glob("US-*.md")):
-            story = MarkdownParser.parse_user_story(str(story_file), epic.id)
-            if story:
-                epic.user_stories.append(story)
-                print(f"  - Loaded Story: {story.id} - {story.title}")
+        # Parse user stories for this epic - support both MEET1-X-Y and US-X-Y naming patterns
+        story_patterns = ["MEET1-*.md", "US-*.md"]
+        for pattern in story_patterns:
+            for story_file in sorted(epic_dir.glob(pattern)):
+                # Skip epic.md files
+                if story_file.name == "epic.md":
+                    continue
+                story = MarkdownParser.parse_user_story(str(story_file), epic.id)
+                if story and not any(s.id == story.id for s in epic.user_stories):
+                    epic.user_stories.append(story)
+                    print(f"  - Loaded Story: {story.id} - {story.title}")
 
         epics.append(epic)
 
@@ -299,9 +331,24 @@ def load_epics_and_stories() -> List[Epic]:
 def main():
     """Main execution"""
     print("=" * 80)
-    print("Jira Issue Creator - Premium Customer Notification System")
+    print("Generic Jira Issue Creator - Epics & User Stories")
     print("=" * 80)
     print()
+
+    # Display configuration
+    print("Configuration:")
+    print(f"  JIRA_URL: {JIRA_URL}")
+    print(f"  JIRA_PROJECT_KEY: {PROJECT_KEY}")
+    print(f"  EPICS_DIR: {EPICS_DIR}")
+    print(f"  JIRA_PAT: {'***' if JIRA_PAT else 'NOT SET (required)'}")
+    print()
+
+    # Validate configuration
+    if not JIRA_PAT:
+        print("Error: JIRA_PAT environment variable is not set.")
+        print("Please set your Jira Personal Access Token:")
+        print("  export JIRA_PAT='your-token-here'")
+        return
 
     # Initialize creator
     creator = JiraIssueCreator(JIRA_URL, JIRA_PAT, PROJECT_KEY)
@@ -315,7 +362,10 @@ def main():
 
     # Load epics and stories
     print("Loading epics and user stories from markdown files...")
-    epics = load_epics_and_stories()
+    epics = load_epics_and_stories(EPICS_DIR)
+    if not epics:
+        print("No epics found. Exiting.")
+        return
     print(f"Loaded {len(epics)} epics with {sum(len(e.user_stories) for e in epics)} user stories")
     print()
 
@@ -351,11 +401,62 @@ def main():
         print(f"  - {story['jira_key']}: {story['title']} ({story['story_points']} pts) [Epic: {story['epic']}]")
 
     # Save report
-    report_file = "/Users/alexk/Projects/ MeetupDemo/scripts/jira_creation_report.json"
+    report_dir = os.path.dirname(os.path.abspath(__file__))
+    report_file = os.path.join(report_dir, f"jira_creation_report_{PROJECT_KEY}.json")
     with open(report_file, 'w') as f:
         json.dump(creator.created_issues, f, indent=2)
     print(f"\nReport saved to: {report_file}")
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Generic Jira Issue Creator - Creates epics and user stories from markdown files",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Environment Variables:
+  JIRA_URL: Jira server URL (default: http://localhost:8080)
+  JIRA_PAT: Jira Personal Access Token (REQUIRED)
+  JIRA_PROJECT_KEY: Jira project key (default: MEET1)
+  EPICS_DIR: Directory containing epic markdown files
+
+Example:
+  export JIRA_URL="https://jira.company.com"
+  export JIRA_PAT="your-pat-token"
+  export JIRA_PROJECT_KEY="PROJ"
+  python create_jira_issues.py
+        """
+    )
+    parser.add_argument(
+        "--url",
+        dest="jira_url",
+        help="Override JIRA_URL environment variable"
+    )
+    parser.add_argument(
+        "--pat",
+        dest="jira_pat",
+        help="Override JIRA_PAT environment variable"
+    )
+    parser.add_argument(
+        "--project",
+        dest="project_key",
+        help="Override JIRA_PROJECT_KEY environment variable"
+    )
+    parser.add_argument(
+        "--epics-dir",
+        dest="epics_dir",
+        help="Override EPICS_DIR environment variable"
+    )
+    
+    args = parser.parse_args()
+    
+    # Override globals with command-line args if provided
+    if args.jira_url:
+        JIRA_URL = args.jira_url
+    if args.jira_pat:
+        JIRA_PAT = args.jira_pat
+    if args.project_key:
+        PROJECT_KEY = args.project_key
+    if args.epics_dir:
+        EPICS_DIR = args.epics_dir
+    
     main()
