@@ -19,16 +19,25 @@ Before proceeding with any infrastructure setup or update request:
    - Clarify the purpose and requirements for the infrastructure change
    - Identify dependencies with other services or components
 
+3. **Isolation & Port Management**
+   - **Check existing Docker containers** on the host Docker Desktop for port conflicts
+   - **Use Docker Compose project naming** to isolate this workspace's containers
+   - **Set custom ports** if default ports are already in use by unrelated containers
+   - **Never modify or stop containers** that belong to other projects
+   - **Document port mappings** to avoid future conflicts
+
 ## Core Responsibilities
 
 ### 1. Docker Compose Strategy
 
 - **Create or update `docker-compose.yml`** for local development environments
+- **Set project name explicitly** using `COMPOSE_PROJECT_NAME` environment variable or `-p` flag to isolate containers
 - **Structure services logically** corresponding to architecture components
 - **Define environment variables** in `.env` files (never commit sensitive data)
 - **Configure volumes** for persistent data, code mounting, and shared resources
-- **Set up networking** between services using Docker Compose networks
+- **Set up networking** between services using Docker Compose networks (isolated from other projects)
 - **Include health checks** for all services to ensure readiness
+- **Use custom network names** prefixed with project name to avoid conflicts (e.g., `meetupdemo-network`)
 
 ### 2. Dockerfile Best Practices
 
@@ -73,13 +82,17 @@ Before proceeding with any infrastructure setup or update request:
 
 ### 6. Networking & Communication
 
-- **Create custom Docker network** for inter-service communication
+- **Create custom Docker network** for inter-service communication, isolated from other projects
+- **Use project-specific network naming** to prevent conflicts (e.g., `meetupdemo-backend`)
 - **Configure DNS names** for service-to-service communication
-- **Expose ports appropriately**:
+- **Expose ports appropriately** with conflict detection:
+  - Check for port conflicts with `docker ps` or `lsof -i :<port>`
   - Only expose ports needed for local development
-  - Use consistent port numbering
-  - Avoid port conflicts with common services
-- **Document exposed ports and access URLs** (e.g., http://localhost:3000)
+  - If default ports are busy, use alternative port numbers
+  - Document port alternatives and environment variable overrides
+  - Use `.env.local` to override ports for specific developer machines
+- **Use port ranges** that minimize conflicts (e.g., 5000-5999 for this project)
+- **Document exposed ports and access URLs** with alternative port info (e.g., http://localhost:3000 or http://localhost:3010 if port busy)
 
 ### 7. Environment & Configuration
 
@@ -87,9 +100,16 @@ Before proceeding with any infrastructure setup or update request:
   - Development specific settings
   - Default values for local development
   - Override mechanisms for different scenarios
-- **Use environment files** (`.env.local`, `.env.dev`)
+- **Use environment files** (`.env`, `.env.local`, `.env.dev`):
+  - `.env` - Default settings (committed to repo)
+  - `.env.local` - Local machine overrides (NOT committed, for port customization)
+  - `.env.dev` - Development environment specific
+- **Support port customization** via environment variables:
+  - Define default ports in `.env`
+  - Allow overrides via `.env.local` for port conflicts
+  - Document custom port setup in README
 - **Never hardcode secrets** - use secrets management patterns
-- **Document all configurable parameters**
+- **Document all configurable parameters** including port alternatives
 
 ### 8. Logging & Debugging
 
@@ -116,43 +136,59 @@ Before proceeding with any infrastructure setup or update request:
 
 When a user requests to create or update infrastructure:
 
-1. **Gather Requirements**
+1. **Check Docker Environment**
+   - Run `docker ps` to identify running containers
+   - Check for port conflicts with `lsof -i :<port>` or `docker port <container>`
+   - Identify which ports are in use by unrelated containers
+   - Note available port ranges for this project
+
+2. **Gather Requirements**
    - What services/components are needed?
    - What are the functional and non-functional requirements?
    - What data sources and external services are involved?
    - What is the expected developer workflow?
+   - Are there specific ports that must be used?
 
-2. **Review Architecture Documents**
+3. **Review Architecture Documents**
    - Check component specifications in `docs/architecture/components/`
    - Verify NFR alignment in `docs/architecture/nfr/`
    - Understand system design from `docs/architecture/diagrams/`
 
-3. **Design the Infrastructure**
+4. **Design the Infrastructure**
    - List all services required
    - Identify dependencies and startup order
-   - Plan volumes, networks, and port mappings
+   - Plan volumes, networks, and port mappings with conflict detection
+   - Select alternative ports if defaults are in use
+   - Use project-specific naming for networks and volumes
    - Consider security and best practices
 
-4. **Create/Update Artifacts**
-   - Generate/update `docker-compose.yml`
+5. **Create/Update Artifacts**
+   - Generate/update `docker-compose.yml` with project naming and custom ports
+   - Set `COMPOSE_PROJECT_NAME` environment variable
    - Create/update `Dockerfile`s where needed
-   - Create `.env.example` with all variables
+   - Create `.env` with default ports and settings
+   - Create `.env.example` with all variables (for committed version)
+   - Create `.env.local.example` showing custom port overrides
    - Create/update scripts in `scripts/`
-   - Add/update documentation
+   - Add/update documentation with port alternatives
 
-5. **Validate & Verify**
+6. **Validate & Verify**
    - Ensure architecture alignment
-   - Test container builds
-   - Verify service communication
+   - Verify no conflicts with existing containers
+   - Test container builds with project isolation
+   - Verify service communication within project network
    - Check volume and networking setup
-   - Provide clear setup instructions
+   - Test port customization via `.env.local`
+   - Provide clear setup instructions including port options
 
-6. **Document Thoroughly**
+7. **Document Thoroughly**
    - Usage instructions for `docker-compose up/down`
-   - Port mappings and access URLs
-   - Environment variable requirements
+   - Port mappings and access URLs (default and alternative)
+   - Environment variable requirements and customization
+   - How to detect and resolve port conflicts
    - Troubleshooting common issues
    - Data initialization procedures
+   - Project isolation approach
 
 ## Documentation Template
 
@@ -163,16 +199,41 @@ For each infrastructure setup, provide:
 - Service 1: [Purpose]
 - Service 2: [Purpose]
 
-## Ports
+## Default Ports
 - [Port]: [Service/Purpose]
 - [Port]: [Service/Purpose]
+
+## Custom Port Configuration
+If default ports are in use on your machine:
+1. Copy `.env` to `.env.local`
+2. Update port values in `.env.local`:
+   \`\`\`
+   SERVICE_PORT=5001  # Changed from 5000
+   DB_PORT=5433       # Changed from 5432
+   \`\`\`
+3. Docker Compose will use `.env.local` automatically
+
+## Check for Port Conflicts
+\`\`\`bash
+# Check if port is in use
+lsof -i :5000
+docker ps  # List running containers
+\`\`\`
 
 ## Environment Variables
 - VAR_NAME: [Description]
+- SERVICE_PORT: [Default Port] (override in .env.local if busy)
 
 ## Quick Start
 \`\`\`bash
+# First time setup
 docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop services
+docker-compose down
 \`\`\`
 
 ## Shutdown
@@ -180,8 +241,15 @@ docker-compose up -d
 docker-compose down
 \`\`\`
 
+## Project Isolation
+- Container names prefixed with project name
+- Network isolated from other Docker projects
+- Safe to run alongside unrelated containers
+
 ## Troubleshooting
-- Issue: [Solution]
+- Port already in use: [Solution - use .env.local]
+- Container won't start: [Check logs and architecture alignment]
+- Service communication issues: [Check custom network configuration]
 ```
 
 ## Constraints & Best Practices
@@ -192,8 +260,12 @@ docker-compose down
 - **Security first** - even in local development
 - **Clear documentation** - developers should understand the setup
 - **Reproducibility** - same setup should work on all developer machines
-- **Version control** - track all configuration files
+- **Version control** - track all configuration files (except `.env.local`)
 - **No hardcoded credentials** - use environment variables
+- **Project isolation** - use explicit naming to avoid affecting unrelated containers
+- **Port conflict handling** - always check for conflicts and provide alternatives
+- **Never interfere with other projects** - only manage containers created by this project
+- **Document port customization** - make it easy for developers to override ports
 
 ## Related Resources
 
